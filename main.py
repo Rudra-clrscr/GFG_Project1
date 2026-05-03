@@ -68,7 +68,7 @@ async def get_products():
             "id": 4,
             "name": "Leather Handbag",
             "price": 2400.00,
-            "image_url": "/static/images/handbag.png"
+            "image_url": "/static/images/handbag.jpg"
         },
         {
             "id": 5,
