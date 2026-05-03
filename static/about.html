@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURELIA | Brand Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header style="background: rgba(10, 10, 10, 0.9);">
+    <a href="index.html" class="brand">Aurelia</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="about.html" style="color: var(--champagne);">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="cart-icon">
+      CART <span class="cart-count">0</span>
+    </div>
+  </header>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h2>YOUR CART</h2>
+      <button class="close-cart">&times;</button>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span> <span>$0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <h1 class="fade-in">OUR STORY</h1>
+      <p class="fade-in" style="font-size: 1.1rem; margin-top: 2rem;">
+        AURELIA was born out of a desire to redefine modern elegance. Our pieces are not merely clothing; they are architectural expressions of identity, crafted with the finest materials globally sourced for those who appreciate understated luxury.
+      </p>
+      
+      <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop" alt="Aurelia Studio" class="fade-in" style="width:100%; margin-top: 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+      
+      <p class="fade-in" style="font-size: 1.1rem; margin-top: 4rem;">
+        From the initial sketch to the final stitch, our artisans pour their mastery into every detail. The Obsidian, Champagne Gold, and Pure White palettes are an homage to timelessness, ensuring each garment transcends fleeting trends.
+      </p>
+    </div>
+  </section>
+
+  <!-- AI Concierge UI -->
+  <div class="chat-fab">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </div>
+  <div class="chat-window">
+    <div class="chat-header">AURELIA Concierge</div>
+    <div class="chat-messages">
+      <div class="message bot">Welcome to AURELIA. I am your personal concierge. How may I assist you with your wardrobe today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chat-input-field" placeholder="Ask about our collection...">
+      <button id="chat-send-btn">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

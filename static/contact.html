@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURELIA | Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header style="background: rgba(10, 10, 10, 0.9);">
+    <a href="index.html" class="brand">Aurelia</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" style="color: var(--champagne);">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="cart-icon">
+      CART <span class="cart-count">0</span>
+    </div>
+  </header>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h2>YOUR CART</h2>
+      <button class="close-cart">&times;</button>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span> <span>$0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div style="max-width: 600px; margin: 0 auto;">
+      <h1 class="fade-in" style="text-align:center;">INQUIRIES</h1>
+      <p class="fade-in" style="text-align:center; margin-bottom: 3rem;">Please reach out to our client services team for bespoke requests, sizing inquiries, or private viewings.</p>
+      
+      <form id="contact-form" class="fade-in">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="inquiry">Your Inquiry</label>
+          <textarea id="inquiry" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Submit Inquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- AI Concierge UI -->
+  <div class="chat-fab">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </div>
+  <div class="chat-window">
+    <div class="chat-header">AURELIA Concierge</div>
+    <div class="chat-messages">
+      <div class="message bot">Welcome to AURELIA. I am your personal concierge. How may I assist you with your wardrobe today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chat-input-field" placeholder="Ask about our collection...">
+      <button id="chat-send-btn">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

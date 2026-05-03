@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURELIA | Luxury Fashion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <a href="index.html" class="brand">Aurelia</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="cart-icon">
+      CART <span class="cart-count">0</span>
+    </div>
+  </header>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h2>YOUR CART</h2>
+      <button class="close-cart">&times;</button>
+    </div>
+    <div class="cart-items">
+      <!-- Items will be injected by JS -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span> <span>$0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div>
+      <h1>Redefining Elegance</h1>
+      <p style="font-size: 1.2rem; letter-spacing: 1px; font-weight: 300;">Explore our latest curated collection.</p>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="page-content">
+    <h2 style="text-align:center; font-weight: 300; letter-spacing: 2px; margin-bottom: 2rem;">THE COLLECTION</h2>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/trench.png" alt="The Obsidian Trench" class="product-image">
+        <div class="product-info">
+          <h3>The Obsidian Trench</h3>
+          <p>$1250.00</p>
+          <button class="add-to-cart" data-id="1" data-name="The Obsidian Trench" data-price="1250" data-image="/static/images/trench.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/blouse.png" alt="Champagne Silk Blouse" class="product-image">
+        <div class="product-info">
+          <h3>Champagne Silk Blouse</h3>
+          <p>$890.00</p>
+          <button class="add-to-cart" data-id="2" data-name="Champagne Silk Blouse" data-price="890" data-image="/static/images/blouse.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/turtleneck.png" alt="Cashmere Turtleneck" class="product-image">
+        <div class="product-info">
+          <h3>Cashmere Turtleneck</h3>
+          <p>$1050.00</p>
+          <button class="add-to-cart" data-id="3" data-name="Cashmere Turtleneck" data-price="1050" data-image="/static/images/turtleneck.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 4 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/handbag.png" alt="Leather Handbag" class="product-image">
+        <div class="product-info">
+          <h3>Leather Handbag</h3>
+          <p>$2400.00</p>
+          <button class="add-to-cart" data-id="4" data-name="Leather Handbag" data-price="2400" data-image="/static/images/handbag.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 5 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/gown.jpg" alt="Midnight Blue Evening Gown" class="product-image">
+        <div class="product-info">
+          <h3>Midnight Blue Evening Gown</h3>
+          <p>$1850.00</p>
+          <button class="add-to-cart" data-id="5" data-name="Midnight Blue Evening Gown" data-price="1850" data-image="/static/images/gown.jpg">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 6 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/sunglasses.png" alt="Classic Aviator Sunglasses" class="product-image">
+        <div class="product-info">
+          <h3>Classic Aviator Sunglasses</h3>
+          <p>$420.00</p>
+          <button class="add-to-cart" data-id="6" data-name="Classic Aviator Sunglasses" data-price="420" data-image="/static/images/sunglasses.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 7 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/watch.png" alt="Chronograph Automatic Watch" class="product-image">
+        <div class="product-info">
+          <h3>Chronograph Automatic Watch</h3>
+          <p>$3500.00</p>
+          <button class="add-to-cart" data-id="7" data-name="Chronograph Automatic Watch" data-price="3500" data-image="/static/images/watch.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 8 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/parfum.png" alt="Aurelia Signature Parfum" class="product-image">
+        <div class="product-info">
+          <h3>Aurelia Signature Parfum</h3>
+          <p>$280.00</p>
+          <button class="add-to-cart" data-id="8" data-name="Aurelia Signature Parfum" data-price="280" data-image="/static/images/parfum.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 9 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/loafers.png" alt="Velvet Loafers" class="product-image">
+        <div class="product-info">
+          <h3>Velvet Loafers</h3>
+          <p>$790.00</p>
+          <button class="add-to-cart" data-id="9" data-name="Velvet Loafers" data-price="790" data-image="/static/images/loafers.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 10 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/hoops.png" alt="Gold Vermeil Hoop Earrings" class="product-image">
+        <div class="product-info">
+          <h3>Gold Vermeil Hoop Earrings</h3>
+          <p>$540.00</p>
+          <button class="add-to-cart" data-id="10" data-name="Gold Vermeil Hoop Earrings" data-price="540" data-image="/static/images/hoops.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 11 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/scarf.jpg" alt="Silk Scarf with Monogram" class="product-image">
+        <div class="product-info">
+          <h3>Silk Scarf with Monogram</h3>
+          <p>$220.00</p>
+          <button class="add-to-cart" data-id="11" data-name="Silk Scarf with Monogram" data-price="220" data-image="/static/images/scarf.jpg">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 12 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/coat.png" alt="Oversized Cashmere Coat" class="product-image">
+        <div class="product-info">
+          <h3>Oversized Cashmere Coat</h3>
+          <p>$2100.00</p>
+          <button class="add-to-cart" data-id="12" data-name="Oversized Cashmere Coat" data-price="2100" data-image="/static/images/coat.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 13 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/bracelet.png" alt="Diamond Tennis Bracelet" class="product-image">
+        <div class="product-info">
+          <h3>Diamond Tennis Bracelet</h3>
+          <p>$4500.00</p>
+          <button class="add-to-cart" data-id="13" data-name="Diamond Tennis Bracelet" data-price="4500" data-image="/static/images/bracelet.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 14 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/sneakers.png" alt="Minimalist Leather Sneakers" class="product-image">
+        <div class="product-info">
+          <h3>Minimalist Leather Sneakers</h3>
+          <p>$650.00</p>
+          <button class="add-to-cart" data-id="14" data-name="Minimalist Leather Sneakers" data-price="650" data-image="/static/images/sneakers.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 15 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/tote.png" alt="Structured Tote Bag" class="product-image">
+        <div class="product-info">
+          <h3>Structured Tote Bag</h3>
+          <p>$1850.00</p>
+          <button class="add-to-cart" data-id="15" data-name="Structured Tote Bag" data-price="1850" data-image="/static/images/tote.png">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 16 -->
+      <div class="product-card fade-in">
+        <img src="/static/images/skirt.jpg" alt="Pleated Midi Skirt" class="product-image">
+        <div class="product-info">
+          <h3>Pleated Midi Skirt</h3>
+          <p>$890.00</p>
+          <button class="add-to-cart" data-id="16" data-name="Pleated Midi Skirt" data-price="890" data-image="/static/images/skirt.jpg">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Concierge UI -->
+  <div class="chat-fab">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </div>
+  <div class="chat-window">
+    <div class="chat-header">AURELIA Concierge</div>
+    <div class="chat-messages">
+      <div class="message bot">Welcome to AURELIA. I am your personal concierge. How may I assist you with your wardrobe today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chat-input-field" placeholder="Ask about our collection...">
+      <button id="chat-send-btn">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

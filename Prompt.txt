@@ -1,0 +1,23 @@
+Role: You are a Senior Full-Stack Developer specializing in high-end E-commerce and FastAPI integrations.
+The Objective: Build a cohesive, multi-page luxury fashion website ("AURELIA") featuring a storefront, an editorial "About" page, a "Contact" page, and a Python-powered AI Concierge.
+1. Frontend Architecture (HTML/CSS/JS)
+The Look: Minimalist, editorial design. Use a color palette of Obsidian (#0A0A0A), Champagne Gold (#C5A059), and Pure White.
+Navigation: A persistent, transparent-to-solid glassmorphism header connecting four distinct HTML pages: index.html (Home/Shop), about.html (Brand Story), contact.html (Inquiry), and checkout.html.
+Interactivity: * Use JavaScript to manage a global cart object stored in localStorage.
+Implement a slide-out cart drawer.
+Add a "Fade-in" intersection observer for scroll animations.
+2. Backend Architecture (FastAPI & Python)
+Product API: Create a GET endpoint /products that returns a JSON list of luxury items (ID, Name, Price, ImageURL).
+Payment Simulation: Create a POST endpoint /process-payment that accepts cart data and returns a "Payment Successful" status after a 2-second simulated delay.
+The AI Concierge (Dummy Agent): * Create a POST endpoint /chat.
+Logic: Implement a Python function that uses keyword matching to simulate a high-end personal shopper.
+Tone: The agent must sound sophisticated. If the user mentions "material," it should talk about "Italian silk and hand-sourced cashmere."
+3. Integrated Components
+Contact System: A functional form on the contact.html page that sends data to a /contact-submit FastAPI endpoint.
+The Chat UI: A fixed-position floating action button (FAB) in the bottom right that opens a sleek, gold-bordered chat window. Use the Fetch API to communicate with the FastAPI /chat endpoint.
+4. Technical Constraints
+CORS: Enable Cross-Origin Resource Sharing in FastAPI so the frontend can communicate with the backend.
+Modularity: Keep CSS in a style.css file and JavaScript in a script.js file for maintainability across all pages.
+Validation: Use Pydantic models in FastAPI for all incoming requests (Chat, Payment, Contact).
+
+

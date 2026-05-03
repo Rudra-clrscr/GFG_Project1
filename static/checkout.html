@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURELIA | Checkout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header style="background: rgba(10, 10, 10, 0.9);">
+    <a href="index.html" class="brand">Aurelia</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-content">
+    <div style="max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+      
+      <div class="checkout-summary fade-in">
+        <h2>ORDER SUMMARY</h2>
+        <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--glass-border);">
+        <div id="checkout-items" style="margin-bottom: 2rem;">
+          <!-- Injected by JS -->
+        </div>
+        <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--glass-border);">
+        <div id="checkout-total" style="font-size: 1.5rem; text-align: right; margin-top: 1rem;">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+      <div class="checkout-details fade-in">
+        <h2>SECURE PAYMENT</h2>
+        <form id="checkout-form" style="margin-top: 1.5rem;">
+          <div class="form-group">
+            <label>Cardholder Name</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" placeholder="XXXX XXXX XXXX XXXX" required>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <div class="form-group" style="flex: 1;">
+              <label>Expiry</label>
+              <input type="text" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label>CVC</label>
+              <input type="text" placeholder="123" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Place Order</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
