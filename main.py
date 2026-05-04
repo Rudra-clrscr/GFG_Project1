@@ -1,10 +1,27 @@
 import asyncio
+import os
+from dotenv import load_dotenv
+from google import genai
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from typing import List
+
+# Load environment variables from .env
+load_dotenv()
+
+# Define system prompt for the shopping assistant
+system_instruction = """You are an exclusive, high-end luxury fashion shopping assistant for the brand AURELIA. 
+Your tone should be sophisticated, elegant, polite, and accommodating. 
+You assist clients with styling advice, material details, sizing, and general inquiries about AURELIA products. 
+Keep your responses concise, luxurious, and highly personalized."""
+
+# Initialize the Gemini Client
+gemini_api_key = os.environ.get("GEMINI_API_KEY")
+client = genai.Client(api_key=gemini_api_key) if gemini_api_key else None
+model_id = "gemini-2.5-flash"
 
 app = FastAPI(title="AURELIA API")
 
@@ -36,6 +53,24 @@ class ContactRequest(BaseModel):
     name: str
     email: str
     inquiry: str
+
+def local_concierge_response(message: str) -> str:
+    msg = message.lower()
+
+    if "material" in msg or "fabric" in msg:
+        return "Our garments are crafted from Italian silk, hand-sourced cashmere, fine wool, and supple leather, selected for a refined hand-feel and lasting elegance."
+    if "shipping" in msg or "delivery" in msg:
+        return "We offer complimentary worldwide shipping on all AURELIA orders via secure courier, with careful packaging for each piece."
+    if "price" in msg or "cost" in msg:
+        return "Our pieces reflect meticulous craftsmanship and exclusivity. You can view individual pricing throughout the collection."
+    if "size" in msg or "fit" in msg:
+        return "AURELIA pieces are tailored with a refined silhouette. For a precise fit, I recommend choosing your usual size for relaxed pieces and sizing up for structured outerwear."
+    if "style" in msg or "recommend" in msg or "wear" in msg:
+        return "For an elegant wardrobe statement, pair the Obsidian Trench with the Champagne Silk Blouse, then finish with the Leather Handbag for quiet polish."
+    if "hello" in msg or "hi" in msg:
+        return "Welcome to AURELIA. I am your personal concierge. How may I assist you with your wardrobe today?"
+
+    return "I would be delighted to assist with our collections, materials, sizing, shipping, or personal styling recommendations."
 
 # Endpoints
 
@@ -116,21 +151,44 @@ async def process_payment(request: PaymentRequest):
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    msg = request.message.lower()
-    
-    # Keyword matching for the AI Concierge
-    if "material" in msg or "fabric" in msg:
-        response = "Our garments are crafted from the finest materials, including Italian silk and hand-sourced cashmere, designed for unparalleled elegance."
-    elif "shipping" in msg or "delivery" in msg:
-        response = "We offer complimentary worldwide shipping on all AURELIA orders via secure courier."
-    elif "price" in msg or "cost" in msg:
-        response = "Our pieces reflect true craftsmanship and exclusivity. You can view individual pricing in our collection."
-    elif "hello" in msg or "hi" in msg:
-        response = "Welcome to AURELIA. I am your personal concierge. How may I assist you with your wardrobe today?"
-    else:
-        response = "I am here to assist you with any inquiries regarding our collections, materials, or your personal styling needs."
-        
-    return {"response": response}
+    # Default message from local concierge logic
+    ai_message = local_concierge_response(request.message)
+
+    if client is None:
+        return {"response": ai_message}
+
+    try:
+        # TIER 1: Try Gemini 2.5 Flash
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=request.message,
+            config=genai.types.GenerateContentConfig(
+                system_instruction=system_instruction
+            )
+        )
+        return {"response": response.text or ai_message}
+    except Exception as e:
+        # Check if the error is due to rate limits or quota (429)
+        if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+            print("Gemini 2.5 Flash quota hit, trying TIER 2 (Gemini 2.0 Flash Lite)...")
+            try:
+                # TIER 2: Fallback to Gemini 2.0 Flash Lite
+                response = client.models.generate_content(
+                    model="gemini-2.0-flash-lite",
+                    contents=request.message,
+                    config=genai.types.GenerateContentConfig(
+                        system_instruction=system_instruction
+                    )
+                )
+                return {"response": response.text or ai_message}
+            except Exception as e2:
+                print(f"TIER 2 also failed: {e2}")
+        else:
+            print(f"Gemini API Error: {e}")
+            
+    # TIER 3: Local Concierge Fallback
+    print("Using TIER 3 (Local Concierge) fallback.")
+    return {"response": ai_message}
 
 @app.post("/contact-submit")
 async def contact_submit(request: ContactRequest):
