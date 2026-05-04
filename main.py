@@ -54,24 +54,6 @@ class ContactRequest(BaseModel):
     email: str
     inquiry: str
 
-def local_concierge_response(message: str) -> str:
-    msg = message.lower()
-
-    if "material" in msg or "fabric" in msg:
-        return "Our garments are crafted from Italian silk, hand-sourced cashmere, fine wool, and supple leather, selected for a refined hand-feel and lasting elegance."
-    if "shipping" in msg or "delivery" in msg:
-        return "We offer complimentary worldwide shipping on all AURELIA orders via secure courier, with careful packaging for each piece."
-    if "price" in msg or "cost" in msg:
-        return "Our pieces reflect meticulous craftsmanship and exclusivity. You can view individual pricing throughout the collection."
-    if "size" in msg or "fit" in msg:
-        return "AURELIA pieces are tailored with a refined silhouette. For a precise fit, I recommend choosing your usual size for relaxed pieces and sizing up for structured outerwear."
-    if "style" in msg or "recommend" in msg or "wear" in msg:
-        return "For an elegant wardrobe statement, pair the Obsidian Trench with the Champagne Silk Blouse, then finish with the Leather Handbag for quiet polish."
-    if "hello" in msg or "hi" in msg:
-        return "Welcome to AURELIA. I am your personal concierge. How may I assist you with your wardrobe today?"
-
-    return "I would be delighted to assist with our collections, materials, sizing, shipping, or personal styling recommendations."
-
 # Endpoints
 
 @app.get("/")
@@ -151,11 +133,11 @@ async def process_payment(request: PaymentRequest):
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    # Default message from local concierge logic
-    ai_message = local_concierge_response(request.message)
+    # Default fallback message
+    fallback_message = "I apologize, but I am currently experiencing high demand and cannot access my luxury style database. Please try again in a few moments."
 
     if client is None:
-        return {"response": ai_message}
+        return {"response": fallback_message}
 
     try:
         # TIER 1: Try Gemini 2.5 Flash
@@ -166,7 +148,7 @@ async def chat(request: ChatRequest):
                 system_instruction=system_instruction
             )
         )
-        return {"response": response.text or ai_message}
+        return {"response": response.text or fallback_message}
     except Exception as e:
         # Check if the error is due to rate limits or quota (429)
         if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
@@ -180,15 +162,15 @@ async def chat(request: ChatRequest):
                         system_instruction=system_instruction
                     )
                 )
-                return {"response": response.text or ai_message}
+                return {"response": response.text or fallback_message}
             except Exception as e2:
                 print(f"TIER 2 also failed: {e2}")
         else:
             print(f"Gemini API Error: {e}")
             
-    # TIER 3: Local Concierge Fallback
-    print("Using TIER 3 (Local Concierge) fallback.")
-    return {"response": ai_message}
+    # TIER 3: Generic Error Fallback
+    print("Using TIER 3 (Generic Error) fallback.")
+    return {"response": fallback_message}
 
 @app.post("/contact-submit")
 async def contact_submit(request: ContactRequest):
